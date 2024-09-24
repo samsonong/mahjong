@@ -1,10 +1,12 @@
 import { TILE_TYPE } from "../tiles/tiles";
 
+export type HAND = {
+  open: TILE_TYPE[];
+  close: TILE_TYPE[];
+};
+
 export class Player {
-  hand: {
-    open: TILE_TYPE[];
-    close: TILE_TYPE[];
-  } = { open: [], close: [] };
+  hand: HAND = { open: [], close: [] };
 
   wallet: number;
 
