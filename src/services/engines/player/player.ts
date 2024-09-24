@@ -6,11 +6,9 @@ export class Player {
     close: TILE_TYPE[];
   } = { open: [], close: [] };
 
-  bank: number;
   wallet: number;
 
-  constructor(bank: number, wallet: number) {
-    this.bank = bank;
+  constructor(wallet: number) {
     this.wallet = wallet;
   }
 }
