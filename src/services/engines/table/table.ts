@@ -1,8 +1,16 @@
-import { TILE_TYPE } from "../tiles/tiles";
+import { initTiles, TILE_TYPE } from "../tiles/tiles";
 
-export type TABLE = {
+export class Table {
+  seed: number;
   wall: TILE_TYPE[]; // Keeping this simple. We can implement four walls later
-  discardPile: TILE_TYPE[];
-  round: 1 | 2 | 3 | 4;
-  wind: "E" | "S" | "W" | "N"; // This is in order of wind sequence
-};
+
+  round: 1 | 2 | 3 | 4 = 1;
+  wind: "E" | "S" | "W" | "N" = "E"; // In order of wind sequence
+  discardPile: TILE_TYPE[] = [];
+
+  constructor() {
+    const { seed, tiles } = initTiles();
+    this.wall = tiles;
+    this.seed = seed;
+  }
+}
