@@ -1,8 +1,8 @@
-import { TILE_TYPE } from "../tiles/tiles";
+import { SORTED_TILES } from "../tiles/sortTiles";
 
 export type HAND = {
-  open: TILE_TYPE[];
-  close: TILE_TYPE[];
+  open: SORTED_TILES[];
+  close: SORTED_TILES[];
 };
 
 export class Player {
