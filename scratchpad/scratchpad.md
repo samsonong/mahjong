@@ -8,8 +8,7 @@
   - Hand
     - Open
     - Close
-  - Bank (total $)
-  - Wallet (paid up capital for each game)
+  - Wallet
 
 # Flow
 
@@ -25,3 +24,20 @@
 5. Other players check for possible actions
    a. Chi/Pon/Kan
    b. Ron (`HAND` is complete)
+
+# Determining winning hands
+
+## Possible scenarios
+
+1. Fully closed hand
+   a. Check all possible combinations
+2. Mixed hand
+   a. Check that minimum points have been reached
+
+## Possible approaches
+
+1. Keep track of all winning hands
+   a. States? (possible, live, impossible)
+2. When to update this state?
+   a. After every action?
+   b. If impossible, skip all checks
