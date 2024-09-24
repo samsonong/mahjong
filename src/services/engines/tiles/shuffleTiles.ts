@@ -6,7 +6,7 @@ const lcg_increment = 49297;
 const lcg_modulus = 233280;
 
 // Function to shuffle tiles
-export function shuffleTiles(tiles: TILE_TYPE[]): {
+export default function (tiles: TILE_TYPE[]): {
   seed: number;
   tiles: TILE_TYPE[];
 } {

@@ -1,4 +1,4 @@
-import { shuffleTiles } from "./shuffle";
+import shuffleTiles from "./shuffleTiles";
 
 export enum TILES {
   CIRCLE_ONE = "CIRCLE_ONE",
