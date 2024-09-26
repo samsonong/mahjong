@@ -1,9 +1,9 @@
 import { SORTED_TILES } from "./sortTiles";
-import { BONUS_TILES, HONOR_TILES, TILES } from "./tiles";
+import { TILES } from "./tiles";
 
 export default function (
   sortedTiles: SORTED_TILES[],
-  tile: TILES | HONOR_TILES | BONUS_TILES,
+  tile: TILES,
   count: number = 1
 ): { updatedTiles: SORTED_TILES[]; discardedTilesId: string[] } {
   const discardedTilesId: string[] = [];

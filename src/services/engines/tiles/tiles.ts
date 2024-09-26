@@ -1,6 +1,8 @@
 import shuffleTiles from "./shuffleTiles";
 
-export enum TILES {
+export type TILES = NUMBER_TILES | HONOR_TILES | BONUS_TILES;
+
+export enum NUMBER_TILES {
   CIRCLE_ONE = "CIRCLE_ONE",
   CIRCLE_TWO = "CIRCLE_TWO",
   CIRCLE_THREE = "CIRCLE_THREE",
@@ -56,7 +58,7 @@ export enum BONUS_TILES {
 }
 
 export type TILE_TYPE = {
-  tile: TILES | HONOR_TILES | BONUS_TILES;
+  tile: TILES;
   id: string;
 };
 
@@ -69,7 +71,10 @@ export function initTiles(): {
   // Most tiles have 4 copies
   for (let i = 1; i <= 4; i++) {
     tiles.push(
-      ...Object.values(TILES).flatMap((v) => ({ tile: v, id: `${v}_${i}` }))
+      ...Object.values(NUMBER_TILES).flatMap((v) => ({
+        tile: v,
+        id: `${v}_${i}`,
+      }))
     );
     tiles.push(
       ...Object.values(HONOR_TILES).flatMap((v) => ({

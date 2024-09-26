@@ -1,8 +1,8 @@
-import { BONUS_TILES, HONOR_TILES, TILE_TYPE, TILES } from "./tiles";
+import { TILE_TYPE, TILES } from "./tiles";
 
 export type SORTED_TILES = {
   id: string[]; // count(id) to determine how mnay tiles there are
-  tile: TILES | HONOR_TILES | BONUS_TILES;
+  tile: TILES;
 };
 
 export default function (tiles: TILE_TYPE[]): SORTED_TILES[] {
@@ -20,4 +20,30 @@ export default function (tiles: TILE_TYPE[]): SORTED_TILES[] {
   });
 
   return Object.values(groupedTiles);
+}
+
+export function mergeSortedTilesArray(
+  tilesA: SORTED_TILES[],
+  tilesB: SORTED_TILES[]
+): SORTED_TILES[] {
+  const combinedTilesMap = new Map<string, SORTED_TILES>();
+
+  const mergeTiles = (tiles: SORTED_TILES[]) => {
+    tiles.forEach(({ tile, id }) => {
+      const tileKey = tile.toString();
+
+      if (combinedTilesMap.has(tileKey)) {
+        combinedTilesMap.get(tileKey)!.id.push(...id);
+      } else {
+        combinedTilesMap.set(tileKey, { tile, id: [...id] });
+      }
+    });
+  };
+
+  // Merge both arrays
+  mergeTiles(tilesA);
+  mergeTiles(tilesB);
+
+  // Return the combined values as an array
+  return Array.from(combinedTilesMap.values());
 }
