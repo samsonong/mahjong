@@ -3,8 +3,8 @@ import { SORTED_TILES } from "../tiles/sortTiles";
 import { TILE_TYPE } from "../tiles/tiles";
 
 export type HAND = {
-  open: OPEN_HAND;
-  closed: CLOSED_HAND;
+  open: SORTED_TILES[];
+  closed: SORTED_TILES[];
   possibleActions: POSSIBLE_ACTIONS;
 };
 
@@ -22,13 +22,6 @@ type POSSIBLE_ACTION_NODE = {
   targets: TILE_TYPE["tile"][];
   base: TILE_TYPE[];
 };
-
-export type CLOSED_HAND = SORTED_TILES[];
-
-export type OPEN_HAND = {
-  tiles: TILE_TYPE[];
-  score: number;
-}[];
 
 export class Player {
   hand: HAND = {
