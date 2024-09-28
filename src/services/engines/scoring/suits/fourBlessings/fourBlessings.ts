@@ -1,7 +1,9 @@
-import { HAND } from "../../player/player";
-import { findTile } from "../../tiles/findTile";
-import { mergeSortedTilesArray } from "../../tiles/sortTiles";
-import { HONOR_TILES, TILES } from "../../tiles/tiles";
+import { HAND } from "../../../player/player";
+import { findTile } from "../../../tiles/findTile";
+import { mergeSortedTilesArray } from "../../../tiles/sortTiles";
+import { HONOR_TILES, TILES } from "../../../tiles/tiles";
+
+export type FourBlessingResponse = "great" | "small" | false;
 
 /**
  * Criteria:
@@ -13,10 +15,13 @@ import { HONOR_TILES, TILES } from "../../tiles/tiles";
  * Early escapes
  *
  * a. When i = 2 and numberOfWind === 0 (can't reach criteria)
+ *
+ * ! This fn does not check if hand is legal winning hand
  */
-export default function (hand: HAND): "great" | "small" | false {
+export default function (hand: HAND): FourBlessingResponse {
   const handToAnalyze = mergeSortedTilesArray(hand.open, hand.closed);
 
+  // Check for honor tiles first (less computationally intensive)
   const tiles: TILES[] = [
     HONOR_TILES.WIND_NORTH,
     HONOR_TILES.WIND_SOUTH,
@@ -33,7 +38,8 @@ export default function (hand: HAND): "great" | "small" | false {
     if (matchingTiles.length >= 3) numberOfWinds++;
   }
 
-  if (numberOfWinds === 3) return "small";
+  // Early escape if insufficent wind triplets
   if (numberOfWinds === 4) return "great";
+  if (numberOfWinds === 3) return "small";
   return false;
 }
