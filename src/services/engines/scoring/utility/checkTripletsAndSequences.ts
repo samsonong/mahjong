@@ -5,10 +5,9 @@ import { SORTED_TILES } from "../../tiles/sortTiles";
 type Response = "triplets" | "sequences" | "mixed" | "pair" | false;
 
 /**
+ * ! This function is meant to be used on CLOSED HAND WITHOUT PAIRS
  *
- * Caveats
- * - This function is meant to be used on the CLOSED HAND
- * - Since you need 2+3n in order to ron, the fourth tile is treated as a non-triplet
+ * Since you need 2+3n in order to ron, the fourth tile is treated as a non-triplet
  */
 export default function (closedHand: SORTED_TILES[]): Response {
   return handler(closedHand);
