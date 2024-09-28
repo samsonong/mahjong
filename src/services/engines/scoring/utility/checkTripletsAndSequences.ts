@@ -38,15 +38,15 @@ function handler(input: SORTED_TILES[]): Response {
   // * Remove melded sequence tiles from array
   const { updatedTiles: firstTileRemoved } = discardTiles(
     input,
-    firstTile.tile
+    firstTile.tile,
   );
   const { updatedTiles: nextTileRemoved } = discardTiles(
     firstTileRemoved,
-    input[1].tile
+    input[1].tile,
   );
   const { updatedTiles: lastTileRemoved } = discardTiles(
     nextTileRemoved,
-    input[2].tile
+    input[2].tile,
   );
   const recursive = handler(lastTileRemoved);
   return recursive === "triplets" ? "mixed" : recursive;

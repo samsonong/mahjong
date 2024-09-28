@@ -24,7 +24,7 @@ export default function (tiles: TILE_TYPE[]): SORTED_TILES[] {
 
 export function mergeSortedTilesArray(
   tilesA: SORTED_TILES[],
-  tilesB: SORTED_TILES[]
+  tilesB: SORTED_TILES[],
 ): SORTED_TILES[] {
   const combinedTilesMap = new Map<string, SORTED_TILES>();
 

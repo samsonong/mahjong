@@ -4,7 +4,7 @@ import { TILES } from "./tiles";
 export default function (
   sortedTiles: SORTED_TILES[],
   tile: TILES,
-  count: number = 1
+  count: number = 1,
 ): { updatedTiles: SORTED_TILES[]; discardedTilesId: string[] } {
   const discardedTilesId: string[] = [];
 
@@ -17,7 +17,7 @@ export default function (
         // Throw an error if trying to discard more tiles than available
         if (count > availableCount) {
           throw new Error(
-            `Cannot discard ${count} tiles. Only ${availableCount} available.`
+            `Cannot discard ${count} tiles. Only ${availableCount} available.`,
           );
         }
 

@@ -74,13 +74,13 @@ export function initTiles(): {
       ...Object.values(NUMBER_TILES).flatMap((v) => ({
         tile: v,
         id: `${v}_${i}`,
-      }))
+      })),
     );
     tiles.push(
       ...Object.values(HONOR_TILES).flatMap((v) => ({
         tile: v,
         id: `${v}_${i}`,
-      }))
+      })),
     );
   }
 
@@ -89,7 +89,7 @@ export function initTiles(): {
     ...Object.values(BONUS_TILES).flatMap((v) => ({
       tile: v,
       id: `${v}_1`,
-    }))
+    })),
   );
 
   // Shuffle the tiles

@@ -1,7 +1,7 @@
 import { TILES, NUMBER_TILES, HONOR_TILES, BONUS_TILES } from "./tiles";
 
 export default function (
-  tile: TILES
+  tile: TILES,
 ): "NUMBER_TILES" | "HONOR_TILES" | "BONUS_TILES" {
   if (Object.values(NUMBER_TILES).includes(tile as NUMBER_TILES)) {
     return "NUMBER_TILES";

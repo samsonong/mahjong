@@ -2,7 +2,7 @@ import { SORTED_TILES } from "./sortTiles";
 
 export default function (
   tileOne: SORTED_TILES,
-  tileTwo: SORTED_TILES
+  tileTwo: SORTED_TILES,
 ): boolean {
   const [xSuit, xNumber] = tileOne.tile.split("_");
   const [ySuit, yNumber] = tileTwo.tile.split("_");

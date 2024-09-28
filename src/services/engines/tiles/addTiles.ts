@@ -3,7 +3,7 @@ import { TILE_TYPE } from "./tiles";
 
 export default function (
   sortedTiles: SORTED_TILES[],
-  newTiles: TILE_TYPE[]
+  newTiles: TILE_TYPE[],
 ): SORTED_TILES[] {
   const updatedTiles = [...sortedTiles];
 
