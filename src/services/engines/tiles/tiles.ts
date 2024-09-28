@@ -86,7 +86,7 @@ export function initTiles(): {
 
   // Bonus tiles only has 1 copy
   tiles.push(
-    ...Object.values(HONOR_TILES).flatMap((v) => ({
+    ...Object.values(BONUS_TILES).flatMap((v) => ({
       tile: v,
       id: `${v}_1`,
     }))
