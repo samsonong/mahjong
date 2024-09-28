@@ -1,19 +1,22 @@
+import { HAND } from "../../player/player";
 import { findTile } from "../../tiles/findTile";
-import { SORTED_TILES } from "../../tiles/sortTiles";
-import { TILES, HONOR_TILES } from "../../tiles/tiles";
+import { mergeSortedTilesArray } from "../../tiles/sortTiles";
+import { HONOR_TILES, TILES } from "../../tiles/tiles";
 
-export default function (hand: SORTED_TILES[]): "great" | "small" | false {
-  /**
-   * Criteria:
-   *
-   * 1. Have >=3 of wind tiles
-   *    - All 4 wind tiles = great blessing
-   *    - 3 of any wind tiles = small blessing
-   *
-   * Early escapes
-   *
-   * a. When i = 2 and numberOfWind === 0 (can't reach criteria)
-   */
+/**
+ * Criteria:
+ *
+ * 1. Have >=3 of wind tiles
+ *    - All 4 wind tiles = great blessing
+ *    - 3 of any wind tiles = small blessing
+ *
+ * Early escapes
+ *
+ * a. When i = 2 and numberOfWind === 0 (can't reach criteria)
+ */
+export default function (hand: HAND): "great" | "small" | false {
+  const handToAnalyze = mergeSortedTilesArray(hand.open, hand.closed);
+
   const tiles: TILES[] = [
     HONOR_TILES.WIND_NORTH,
     HONOR_TILES.WIND_SOUTH,
@@ -26,7 +29,7 @@ export default function (hand: SORTED_TILES[]): "great" | "small" | false {
 
     const thisTile = tiles[i];
 
-    const matchingTiles = findTile(hand, thisTile);
+    const matchingTiles = findTile(handToAnalyze, thisTile);
     if (matchingTiles.length >= 3) numberOfWinds++;
   }
 

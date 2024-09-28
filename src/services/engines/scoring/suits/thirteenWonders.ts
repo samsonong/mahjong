@@ -1,19 +1,21 @@
+import { HAND } from "../../player/player";
 import { findTile } from "../../tiles/findTile";
-import { SORTED_TILES } from "../../tiles/sortTiles";
-import { TILES, NUMBER_TILES, HONOR_TILES } from "../../tiles/tiles";
+import { HONOR_TILES, NUMBER_TILES, TILES } from "../../tiles/tiles";
 
-export default function (hand: SORTED_TILES[]): boolean {
-  /**
-   * Criteria:
-   *
-   * 1. Have 1 of all honor tiles & terminal number tiles (1/9 of bamboo/circle/myriad)
-   * 2. Exactly one pair
-   *
-   * Early escape:
-   *
-   * a. One of (1) has >2 tiles
-   * b. More than one pair
-   */
+/**
+ * Criteria:
+ *
+ * 1. Have 1 of all honor tiles & terminal number tiles (1/9 of bamboo/circle/myriad)
+ * 2. Exactly one pair
+ *
+ * Early escape:
+ *
+ * a. One of (1) has >2 tiles
+ * b. More than one pair
+ */
+export default function (hand: HAND): boolean {
+  const handToAnalyze = hand.closed;
+
   const tiles: TILES[] = [
     NUMBER_TILES.BAMBOO_ONE,
     NUMBER_TILES.BAMBOO_NINE,
@@ -33,7 +35,7 @@ export default function (hand: SORTED_TILES[]): boolean {
   for (let i = 0; i < tiles.length; i++) {
     const thisTile = tiles[i];
 
-    const matchingTiles = findTile(hand, thisTile);
+    const matchingTiles = findTile(handToAnalyze, thisTile);
     if (matchingTiles.length === 1) continue;
     if (matchingTiles.length === 2) {
       if (hasPair) return false;

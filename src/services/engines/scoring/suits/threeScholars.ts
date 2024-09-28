@@ -1,19 +1,22 @@
+import { HAND } from "../../player/player";
 import { findTile } from "../../tiles/findTile";
-import { SORTED_TILES } from "../../tiles/sortTiles";
-import { TILES, HONOR_TILES } from "../../tiles/tiles";
+import { mergeSortedTilesArray } from "../../tiles/sortTiles";
+import { HONOR_TILES, TILES } from "../../tiles/tiles";
 
-export default function (hand: SORTED_TILES[]): "great" | "small" | false {
-  /**
-   * Criteria:
-   *
-   * 1. Have >=2 of dragon tiles
-   *    - All 3 dragon tiles = great scholars
-   *    - 2 of any dragon tiles = small scholars
-   *
-   * Early escapes
-   *
-   * - None
-   */
+/**
+ * Criteria:
+ *
+ * 1. Have >=2 of dragon tiles
+ *    - All 3 dragon tiles = great scholars
+ *    - 2 of any dragon tiles = small scholars
+ *
+ * Early escapes
+ *
+ * - None
+ */
+export default function (hand: HAND): "great" | "small" | false {
+  const handToAnalyze = mergeSortedTilesArray(hand.open, hand.closed);
+
   const tiles: TILES[] = [
     HONOR_TILES.DRAGON_RED,
     HONOR_TILES.DRAGON_GREEN,
@@ -23,7 +26,7 @@ export default function (hand: SORTED_TILES[]): "great" | "small" | false {
   for (let i = 0; i < tiles.length; i++) {
     const thisTile = tiles[i];
 
-    const matchingTiles = findTile(hand, thisTile);
+    const matchingTiles = findTile(handToAnalyze, thisTile);
     if (matchingTiles.length >= 3) numberOfWinds++;
   }
 
