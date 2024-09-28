@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "tidy": "yarn run lint && yarn run prettier",
     "lint": "eslint .",
     "prettier": "prettier . --write",
     "preview": "vite preview",

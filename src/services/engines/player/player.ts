@@ -39,10 +39,4 @@ export class Player {
   constructor(wallet: number) {
     this.wallet = wallet;
   }
-
-  chi(tile: TILE_TYPE) {}
-
-  pon(tile: TILE_TYPE) {}
-
-  kan(tile: TILE_TYPE) {}
 }
