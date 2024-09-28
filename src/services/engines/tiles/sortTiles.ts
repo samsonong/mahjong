@@ -28,7 +28,14 @@ export function mergeSortedTilesArray(
 ): SORTED_TILES[] {
   const combinedTilesMap = new Map<string, SORTED_TILES>();
 
-  const mergeTiles = (tiles: SORTED_TILES[]) => {
+  // Merge both arrays
+  mergeTiles(tilesA);
+  mergeTiles(tilesB);
+
+  // Return the combined values as an array
+  return Array.from(combinedTilesMap.values());
+
+  function mergeTiles(tiles: SORTED_TILES[]) {
     tiles.forEach(({ tile, id }) => {
       const tileKey = tile.toString();
 
@@ -38,12 +45,5 @@ export function mergeSortedTilesArray(
         combinedTilesMap.set(tileKey, { tile, id: [...id] });
       }
     });
-  };
-
-  // Merge both arrays
-  mergeTiles(tilesA);
-  mergeTiles(tilesB);
-
-  // Return the combined values as an array
-  return Array.from(combinedTilesMap.values());
+  }
 }
