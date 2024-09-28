@@ -36,8 +36,11 @@
 
 ## Possible approaches
 
-1. Keep track of all winning hands
-   a. States? (possible, live, impossible)
-2. When to update this state?
-   a. After every action?
-   b. If impossible, skip all checks
+~~1. Keep track of all winning hands~~
+~~a. States? (possible, live, impossible)~~
+~~- Computationally too wasteful (too optimistic)~~
+
+1. Keep track of base criterias that infer possibility of winning hand. Once criteria is matched, check for winning hands. Note: however, this will prevent special suits from being picked up
+   a. Have more than a pair
+   b. No orphaned number tiles (single tile with no adjacent)
+   c. No orphaned honor tiles (all honor tiles must be triplets)
