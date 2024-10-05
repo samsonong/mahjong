@@ -1,6 +1,6 @@
-import { HAND } from "../../player/player";
-import { findTile } from "../../tiles/findTile";
-import { HONOR_TILES, NUMBER_TILES, TILES } from "../../tiles/tiles";
+import { HAND } from "../../../player/player";
+import { findTile } from "../../../tiles/findTile";
+import { HONOR_TILES, NUMBER_TILES, TILES } from "../../../tiles/tiles";
 
 /**
  * Criteria:
