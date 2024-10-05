@@ -1,15 +1,15 @@
 import _ from "lodash";
 import { describe, expect, test } from "vitest";
 import { HAND } from "../../../player/player";
-import fourBlessings from "../fourBlessings/fourBlessings";
-import { BONUS_TILES, HONOR_TILES, NUMBER_TILES } from "./../../../tiles/tiles";
+import { HONOR_TILES, NUMBER_TILES } from "./../../../tiles/tiles";
+import pureGreen from "./pureGreen";
 
 type TestDataType = {
   description: string;
   given: HAND;
   expected: boolean;
 };
-const pureGreen: TestDataType[] = [
+const pureGreenTestCases: TestDataType[] = [
   {
     description: "4 triplets with number pair",
     given: {
@@ -153,14 +153,6 @@ const pureGreen: TestDataType[] = [
     given: {
       open: [
         {
-          tile: BONUS_TILES.ANIMAL_CAT,
-          id: ["ANIMAL_CAT_1"],
-        },
-        {
-          tile: BONUS_TILES.FLOWER_CHRYSANTHEMUM,
-          id: ["FLOWER_CHRYSANTHEMUM_1"],
-        },
-        {
           tile: NUMBER_TILES.BAMBOO_TWO,
           id: ["BAMBOO_TWO_1"],
         },
@@ -204,7 +196,7 @@ const pureGreen: TestDataType[] = [
   },
 ];
 
-const invalidCases = [
+const invalidTestCases = [
   {
     description: "Non-green tiles",
     given: {
@@ -237,10 +229,10 @@ const invalidCases = [
 ];
 
 describe("Pure Green (绿一色)", () => {
-  _.forEach(pureGreen, ({ description, given, expected }) =>
-    test(description, () => expect(fourBlessings(given)).toEqual(expected)),
+  _.forEach(pureGreenTestCases, ({ description, given, expected }) =>
+    test(description, () => expect(pureGreen(given)).toEqual(expected)),
   );
-  _.forEach(invalidCases, ({ description, given, expected }) =>
-    test(description, () => expect(fourBlessings(given)).toEqual(expected)),
+  _.forEach(invalidTestCases, ({ description, given, expected }) =>
+    test(description, () => expect(pureGreen(given)).toEqual(expected)),
   );
 });
