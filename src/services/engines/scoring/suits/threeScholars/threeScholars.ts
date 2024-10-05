@@ -1,7 +1,9 @@
-import { HAND } from "../../player/player";
-import { findTile } from "../../tiles/findTile";
-import { mergeSortedTilesArray } from "../../tiles/sortTiles";
-import { HONOR_TILES, TILES } from "../../tiles/tiles";
+import { HAND } from "../../../player/player";
+import { findTile } from "../../../tiles/findTile";
+import { mergeSortedTilesArray } from "../../../tiles/sortTiles";
+import { HONOR_TILES, TILES } from "../../../tiles/tiles";
+
+export type ThreeScholarResponse = "great" | "small" | false;
 
 /**
  * ! THIS DOES NOT CHECK FOR HAND COMPLETENESS TO AVOID DOUBLE-PROCESSING
@@ -16,7 +18,7 @@ import { HONOR_TILES, TILES } from "../../tiles/tiles";
  *
  * - None
  */
-export default function (hand: HAND): "great" | "small" | false {
+export default function (hand: HAND): ThreeScholarResponse {
   const handToAnalyze = mergeSortedTilesArray(hand.open, hand.closed);
 
   const tiles: TILES[] = [
