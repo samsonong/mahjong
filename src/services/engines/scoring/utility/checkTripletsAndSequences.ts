@@ -1,5 +1,5 @@
-import discardTiles from "../../tiles/discardTiles";
 import isAdjacentTile from "../../tiles/isAdjacentTile";
+import removeSequenceSet from "../../tiles/removeSequenceSet";
 import { SORTED_TILES } from "../../tiles/sortTiles";
 
 type Response = "triplets" | "sequences" | "mixed" | "pair" | false;
@@ -17,36 +17,28 @@ function handler(input: SORTED_TILES[]): Response {
   const firstTile = input[0];
 
   // * Attmept triplets
-  const triplets =
-    firstTile.tile === input[1].tile && firstTile.tile === input[2].tile;
+  const triplets = firstTile.id.length >= 3;
   if (triplets) {
-    if (input.length === 3) return "triplets"; // ! END recursive if end of array
+    if (input.length === 1) return "triplets"; // ! END recursive if end of array
 
-    const recursive = handler(input.slice(3));
+    const recursive = handler(input.slice(1));
     return recursive === "sequences" ? "mixed" : recursive;
   }
 
   // * Attempt sequence
-  const isAdjacent = isAdjacentTile(firstTile, input[1]);
+  const isAdjacent = isAdjacentTile(firstTile.tile, input[1].tile);
   if (!isAdjacent) return false;
-  const isSequence = isAdjacentTile(input[1], input[2]);
+  const isSequence = isAdjacentTile(input[1].tile, input[2].tile);
   if (!isSequence) return false;
 
-  if (input.length === 3) return "sequences"; // ! END recursive if end of array
-
   // * Remove melded sequence tiles from array
-  const { updatedTiles: firstTileRemoved } = discardTiles(
-    input,
+  const { updatedTiles: sequenceTilesRemoved } = removeSequenceSet(input, [
     firstTile.tile,
-  );
-  const { updatedTiles: nextTileRemoved } = discardTiles(
-    firstTileRemoved,
     input[1].tile,
-  );
-  const { updatedTiles: lastTileRemoved } = discardTiles(
-    nextTileRemoved,
     input[2].tile,
-  );
-  const recursive = handler(lastTileRemoved);
+  ]);
+  if (sequenceTilesRemoved.length === 0) return "sequences";
+
+  const recursive = handler(sequenceTilesRemoved);
   return recursive === "triplets" ? "mixed" : recursive;
 }

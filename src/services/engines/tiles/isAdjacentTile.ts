@@ -1,11 +1,11 @@
 import { SORTED_TILES } from "./sortTiles";
 
 export default function (
-  tileOne: SORTED_TILES,
-  tileTwo: SORTED_TILES,
+  tileOne: SORTED_TILES["tile"],
+  tileTwo: SORTED_TILES["tile"],
 ): boolean {
-  const [xSuit, xNumber] = tileOne.tile.split("_");
-  const [ySuit, yNumber] = tileTwo.tile.split("_");
+  const [xSuit, xNumber] = tileOne.split("_");
+  const [ySuit, yNumber] = tileTwo.split("_");
 
   if (xSuit !== ySuit) return false;
   return isAdjacent(xNumber, yNumber);

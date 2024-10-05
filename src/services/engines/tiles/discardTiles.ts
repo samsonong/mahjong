@@ -5,8 +5,8 @@ export default function (
   sortedTiles: SORTED_TILES[],
   tile: TILES,
   count: number = 1,
-): { updatedTiles: SORTED_TILES[]; discardedTilesId: string[] } {
-  const discardedTilesId: string[] = [];
+): { updatedTiles: SORTED_TILES[]; discardedTilesId: SORTED_TILES[] } {
+  const discardedTilesId: SORTED_TILES[] = [];
 
   const updatedTiles = sortedTiles
     .map((group) => {
@@ -23,7 +23,7 @@ export default function (
 
         // Get the IDs of the tiles to discard
         const tilesToDiscard = group.id.slice(0, count);
-        discardedTilesId.push(...tilesToDiscard);
+        discardedTilesId.push({ id: tilesToDiscard, tile: tile });
 
         // Return the updated group with the remaining tiles
         return { ...group, id: group.id.slice(count) };
