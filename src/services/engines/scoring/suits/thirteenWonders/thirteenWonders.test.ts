@@ -237,7 +237,7 @@ const invalidTestCases = [
   },
 ];
 
-describe("Pure Green (绿一色)", () => {
+describe("Thirteen wonders (十三幺)", () => {
   _.forEach(validTestCases, ({ description, given, expected }) =>
     test(description, () => expect(thirteenWonders(given)).toEqual(expected)),
   );
