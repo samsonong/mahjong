@@ -1,8 +1,8 @@
-import { HAND } from "../../player/player";
-import { SORTED_TILES } from "../../tiles/sortTiles";
-import { HONOR_TILES, NUMBER_TILES, TILES } from "../../tiles/tiles";
-import checkTripletsAndSequences from "../utility/checkTripletsAndSequences";
-import findPairs from "../utility/findPairs";
+import { HAND } from "../../../player/player";
+import { SORTED_TILES } from "../../../tiles/sortTiles";
+import { HONOR_TILES, NUMBER_TILES, TILES } from "../../../tiles/tiles";
+import checkTripletsAndSequences from "../../utility/checkTripletsAndSequences";
+import findPairs from "../../utility/findPairs";
 
 /**
  * Criteria:
@@ -26,6 +26,7 @@ export default function (hand: HAND): boolean {
   ];
 
   const { open, closed } = hand;
+
   // Check open hand for non-green tiles
   for (let i = 0; i < open.length; i++) {
     const { tile } = open[i];
