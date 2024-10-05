@@ -4,6 +4,8 @@ import { mergeSortedTilesArray } from "../../tiles/sortTiles";
 import { HONOR_TILES, TILES } from "../../tiles/tiles";
 
 /**
+ * ! THIS DOES NOT CHECK FOR HAND COMPLETENESS TO AVOID DOUBLE-PROCESSING
+ *
  * Criteria:
  *
  * 1. Have >=2 of dragon tiles
@@ -22,15 +24,16 @@ export default function (hand: HAND): "great" | "small" | false {
     HONOR_TILES.DRAGON_GREEN,
     HONOR_TILES.DRAGON_WHITE,
   ];
-  let numberOfWinds: number = 0;
+  let numberOfDragons: number = 0;
   for (let i = 0; i < tiles.length; i++) {
     const thisTile = tiles[i];
 
     const matchingTiles = findTile(handToAnalyze, thisTile);
-    if (matchingTiles.length >= 3) numberOfWinds++;
+    if (matchingTiles.length >= 3) numberOfDragons++;
+
+    if (numberOfDragons === 3) return "great"; // We can insert this to exit early
   }
 
-  if (numberOfWinds === 2) return "small";
-  if (numberOfWinds === 3) return "great";
+  if (numberOfDragons === 2) return "small";
   return false;
 }

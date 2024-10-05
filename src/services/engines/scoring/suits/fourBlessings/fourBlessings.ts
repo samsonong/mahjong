@@ -6,6 +6,8 @@ import { HONOR_TILES, TILES } from "../../../tiles/tiles";
 export type FourBlessingResponse = "great" | "small" | false;
 
 /**
+ * ! THIS DOES NOT CHECK FOR HAND COMPLETENESS TO AVOID DOUBLE-PROCESSING
+ *
  * Criteria:
  *
  * 1. Have >=3 of wind tiles
@@ -15,8 +17,6 @@ export type FourBlessingResponse = "great" | "small" | false;
  * Early escapes
  *
  * a. When i = 2 and numberOfWind === 0 (can't reach criteria)
- *
- * ! This fn does not check if hand is legal winning hand
  */
 export default function (hand: HAND): FourBlessingResponse {
   const handToAnalyze = mergeSortedTilesArray(hand.open, hand.closed);
