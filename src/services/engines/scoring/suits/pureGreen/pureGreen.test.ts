@@ -2,7 +2,7 @@ import _ from "lodash";
 import { describe, expect, test } from "vitest";
 import { HAND } from "../../../player/player";
 import fourBlessings from "../fourBlessings/fourBlessings";
-import { HONOR_TILES, NUMBER_TILES } from "./../../../tiles/tiles";
+import { BONUS_TILES, HONOR_TILES, NUMBER_TILES } from "./../../../tiles/tiles";
 
 type TestDataType = {
   description: string;
@@ -106,6 +106,60 @@ const pureGreen: TestDataType[] = [
     description: "Semi-open mixed with number pair",
     given: {
       open: [
+        {
+          tile: NUMBER_TILES.BAMBOO_TWO,
+          id: ["BAMBOO_TWO_1"],
+        },
+        {
+          tile: NUMBER_TILES.BAMBOO_THREE,
+          id: ["BAMBOO_THREE_1"],
+        },
+        {
+          tile: NUMBER_TILES.BAMBOO_FOUR,
+          id: ["BAMBOO_FOUR_2"],
+        },
+        {
+          tile: NUMBER_TILES.BAMBOO_SIX,
+          id: ["BAMBOO_SIX_1", "BAMBOO_SIX_2", "BAMBOO_SIX_4"],
+        },
+      ],
+      closed: [
+        {
+          tile: NUMBER_TILES.BAMBOO_TWO,
+          id: ["BAMBOO_TWO_2"],
+        },
+        {
+          tile: NUMBER_TILES.BAMBOO_THREE,
+          id: ["BAMBOO_THREE_3"],
+        },
+        {
+          tile: NUMBER_TILES.BAMBOO_FOUR,
+          id: ["BAMBOO_FOUR_3"],
+        },
+        {
+          tile: NUMBER_TILES.BAMBOO_EIGHT,
+          id: ["BAMBOO_EIGHT_1", "BAMBOO_EIGHT_2", "BAMBOO_EIGHT_3"],
+        },
+        {
+          tile: HONOR_TILES.DRAGON_GREEN,
+          id: ["DRAGON_GREEN_1", "DRAGON_GREEN_4"],
+        },
+      ],
+    },
+    expected: true,
+  },
+  {
+    description: "Semi-open mixed with number pair and bonus tiles",
+    given: {
+      open: [
+        {
+          tile: BONUS_TILES.ANIMAL_CAT,
+          id: ["ANIMAL_CAT_1"],
+        },
+        {
+          tile: BONUS_TILES.FLOWER_CHRYSANTHEMUM,
+          id: ["FLOWER_CHRYSANTHEMUM_1"],
+        },
         {
           tile: NUMBER_TILES.BAMBOO_TWO,
           id: ["BAMBOO_TWO_1"],
