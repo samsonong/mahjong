@@ -1,4 +1,5 @@
 import { SORTED_TILES } from "./sortTiles";
+import { ENGLISH_NUMBER_ARRAY } from "./splitNumberTile";
 
 export default function (
   tileOne: SORTED_TILES["tile"],
@@ -10,18 +11,6 @@ export default function (
   if (xSuit !== ySuit) return false;
   return isAdjacent(xNumber, yNumber);
 }
-
-const ENGLISH_NUMBER_ARRAY: string[] = [
-  "ONE",
-  "TWO",
-  "THREE",
-  "FOUR",
-  "FIVE",
-  "SIX",
-  "SEVEN",
-  "EIGHT",
-  "NINE",
-];
 
 function isAdjacent(x: string, y: string): boolean {
   return (

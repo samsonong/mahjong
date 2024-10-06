@@ -1,6 +1,8 @@
 import shuffleTiles from "./shuffleTiles";
 
 export type TILES = NUMBER_TILES | HONOR_TILES | BONUS_TILES;
+export type NUMBER_TILE_SUITS = "CIRCLE" | "MYRIAD" | "BAMBOO";
+export type NUMBER_TILE_NUMBERS = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export enum NUMBER_TILES {
   CIRCLE_ONE = "CIRCLE_ONE",
