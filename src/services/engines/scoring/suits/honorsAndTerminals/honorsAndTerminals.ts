@@ -38,16 +38,11 @@ export default function (hand: HAND): HonorsAndTerminalsResponse {
     const { id, tile } = handToAnalyze[i];
 
     const tileType = getTileType(tile);
-    switch (tileType) {
-      case "BONUS_TILES":
-        continue;
-      case "NUMBER_TILES":
-        if (!terminalTiles.includes(tile)) return false;
-        pureHonors = false;
-        break;
-      case "HONOR_TILES":
-        pureTerminals = false;
-        break;
+    if (tileType.bonus) continue;
+    else if (tileType.honor) pureTerminals = false;
+    else if (tileType.number) {
+      if (!terminalTiles.includes(tile)) return false;
+      pureHonors = false;
     }
 
     if (id.length >= 3) continue;

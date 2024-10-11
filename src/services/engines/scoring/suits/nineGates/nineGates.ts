@@ -25,8 +25,8 @@ export default function (hand: HAND): boolean {
 
     // Escape honor tiles, skip bonus tiles
     const tileType = getTileType(thisGroup.tile);
-    if (tileType === "HONOR_TILES") return false;
-    if (tileType === "BONUS_TILES") continue;
+    if (tileType.honor) return false;
+    if (tileType.bonus) continue;
 
     // Check consistent suit type
     const { suit, number } = splitNumberTile(thisGroup.tile);
