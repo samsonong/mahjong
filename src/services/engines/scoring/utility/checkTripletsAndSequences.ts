@@ -2,7 +2,7 @@ import isAdjacentTile from "../../tiles/isAdjacentTile";
 import removeSequenceSet from "../../tiles/removeSequenceSet";
 import { SORTED_TILES } from "../../tiles/sortTiles";
 
-type Response = "triplets" | "sequences" | "mixed" | "pair" | false;
+type Response = "triplets" | "sequences" | "mixed" | false;
 
 /**
  * ! This function is meant to be used on CLOSED HAND WITHOUT PAIRS

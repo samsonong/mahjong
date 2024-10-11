@@ -1,8 +1,8 @@
 import { HAND } from "../../../player/player";
 import { SORTED_TILES } from "../../../tiles/sortTiles";
 import { HONOR_TILES, NUMBER_TILES, TILES } from "../../../tiles/tiles";
+import checkLegalWinningHand from "../../utility/checkLegalWinningHand";
 import checkTripletsAndSequences from "../../utility/checkTripletsAndSequences";
-import findPairs from "../../utility/findPairs";
 
 /**
  * Criteria:
@@ -65,11 +65,5 @@ export default function (hand: HAND): boolean {
     return !(checkTripletsAndSequences(twoThreeFours) === false);
   }
 
-  // Else, detect { pair, remainder } and checkTripletsAndSequences(remainder)
-  const pairs = findPairs(twoThreeFours);
-  if (pairs.length === 0) return false;
-  for (let i = 0; i < pairs.length; i++) {
-    if (checkTripletsAndSequences(pairs[i].remaining)) return true;
-  }
-  return false;
+  return checkLegalWinningHand(twoThreeFours);
 }
